@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-const product = 'Socks'
-=======
 const app = Vue.createApp({
     data() {
         return {
@@ -10,4 +7,3 @@ const app = Vue.createApp({
         }
     }
 })
->>>>>>> Stashed changes

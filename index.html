@@ -11,11 +11,15 @@
   <body>
     <div id="app">
       <div class="nav-bar"></div>
+
+      <div class="cart">Cart({{ cart }})</div>
       
       <div class="product-display">
         <div class="product-container">
           <div class="product-image">
-            <img v-bind:src="image">
+            <!-- solution -->
+            <img :class="{ 'out-of-stock-img': !inStock }" v-bind:src="image">
+            <!-- solution -->
           </div>
           <div class="product-info">
             <h1>{{ product }}</h1>
@@ -24,22 +28,33 @@
             <ul>
               <li v-for="detail in details">{{ detail }}</li>
             </ul>
-            <!-- solution -->
-            <ul>
-              <li v-for="(size, index) in sizes" :key="index">{{ size }}</li>
-            </ul>
-            <!-- solution -->
-            <div v-for="variant in variants" :key="variant.id">{{ variant.color }}</div>
+
+            <div 
+              v-for="variant in variants" 
+              :key="variant.id" 
+              @mouseover="updateImage(variant.image)" 
+              class="color-circle" 
+              :style="{ backgroundColor: variant.color }">
+            </div>
+            
+            <button 
+              class="button" 
+              :class="{ disabledButton: !inStock }" 
+              :disabled="!inStock" 
+              @click="addToCart">
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
     </div>
-       <!-- Import App -->
-       <script src="./main.js"></script>
 
-       <!-- Mount App -->
-       <script>
-         const mountedApp = app.mount('#app')
-       </script>
+    <!-- Import App -->
+    <script src="./main.js"></script>
+
+    <!-- Mount App -->
+    <script>
+      const mountedApp = app.mount('#app')
+    </script>
   </body>
 </html>

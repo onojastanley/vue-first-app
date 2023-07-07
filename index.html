@@ -22,6 +22,12 @@
             <!-- solution -->
             <a :href="url">Made by Onoja Stanley</a>
            <!-- solution -->
+           <p v-if="inventory > 10">In Stock</p>
+           <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
+           <p v-else>Out of Stock</p>
+           <!-- solution -->
+           <p v-if="onSale">On Sale!</p>
+           <!-- solution -->
           </div>
         </div>
       </div>
